@@ -17,7 +17,7 @@ export default {
     @import '../style/variables';
 
     .card {
-        height: 360px;
+        height: 370px;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -25,9 +25,10 @@ export default {
         width: calc((100% / 5) - 30px);
         margin: 10px 15px;
         background-color: $mainColor;
+        padding: 15px;
 
         img {
-            margin: 25px 0;
+            margin: 15px 0;
             width: 160px;
             height: 160px;
             
@@ -35,11 +36,12 @@ export default {
 
         h2 {
             text-transform: uppercase;
-            margin-bottom: 10px; 
+            margin: 10px 0; 
             color: white
         }
 
         p {
+            font-size: 18px;
             color: rgba(white, 0.4);
         }
     }

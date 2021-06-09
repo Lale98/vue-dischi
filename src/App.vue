@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import "@fontsource/roboto";
 import Main from './components/Main';
 import TopBar from './components/TopBar';
 
@@ -21,5 +22,6 @@ export default {
 
 <style lang="scss">
   @import './style/general';
+  
 
 </style>
