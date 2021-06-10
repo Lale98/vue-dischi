@@ -1,24 +1,47 @@
 <template>
     <main>
+        <TopBar @gnrSelected="filterGen" />
         <div class="music" >
-            <Card v-for="component,index in components" :key="index" :item="component" />
+            <Card v-for="component,index in genereSelected" :key="index" :item="component" />
         </div>
     </main>
 </template>
 
 <script>
 import Card from './Card';
+import TopBar from './TopBar';
 import axios from 'axios';
 
 export default {
     name: 'Main',
     components: {
-        Card
+        Card,
+        TopBar
     },
     data: function () {
         return {
             apiUrl : 'https://flynn.boolean.careers/exercises/api/array/music',
-            components: []
+            components: [],
+            genere: ''
+        }
+    },
+    computed: {
+        genereSelected : function () {
+            const newArray = this.components.filter(
+                (element) => {
+                    if (this.genere == element.genre) {
+                        return element
+                    } else if (this.genere == '') {
+                        return element
+                    }
+                }
+            )
+            return newArray;
+        }
+    },
+    methods : {
+        filterGen : function (gnr) {
+            this.genere = gnr.trim();
         }
     },
     created: function () {
@@ -26,7 +49,6 @@ export default {
             .get(this.apiUrl)
             .then(
                 (response) => {
-                    console.log(this.components);
                     this.components = response.data.response;
                 }
             )
@@ -39,14 +61,14 @@ export default {
     @import '../style/variables';
 
     main {
-        height: 93vh;
+        height: 100vh;
         background-color: $backgroundColor;
 
     }
     .music {
         margin: 0 auto;
         max-width: 1170px;
-        height: 100%;
+        height: 93vh;
         display: flex;
         justify-content: center;
         align-items: center;
